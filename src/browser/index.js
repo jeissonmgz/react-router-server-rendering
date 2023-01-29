@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom'
 import App from '../shared/App'
 import { BrowserRouter } from 'react-router-dom'
 
+console.log("CSR: Loading SPA");
 ReactDOM.hydrate(
   <BrowserRouter>
     <App />

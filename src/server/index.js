@@ -6,7 +6,7 @@ import { matchPath } from 'react-router-dom'
 import { StaticRouter } from 'react-router-dom/server';
 import serialize from 'serialize-javascript'
 import App from '../shared/App'
-import routes from '../shared/routes'
+import routes from '../shared/routing/serverRoutes'
 
 const app = express()
 
@@ -21,9 +21,10 @@ app.get('*', (req, res, next) => {
     : Promise.resolve()
 
   promise.then((data) => {
+    console.log('SSR: redering...')
     const markup = ReactDOM.renderToString(
       <StaticRouter location={req.url} >
-        <App serverData={data} />
+        <App serverData={data} isSSR={true} />
       </StaticRouter>
     )
 
@@ -31,6 +32,7 @@ app.get('*', (req, res, next) => {
       <!DOCTYPE html>
       <html>
         <head>
+          <link rel="icon" type="image/x-icon" href="https://web.dev/images/favicon.ico">
           <title>SSR with React Router</title>
           <script src="/bundle.js" defer></script>
           <link href="/main.css" rel="stylesheet">

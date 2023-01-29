@@ -1,15 +1,15 @@
 import * as React from 'react'
-import routes from './routing/serverRoutes'
+import routes from './routing/browserRoutes'
 import { Route, Routes } from 'react-router-dom'
 import Navbar from './components/Navbar'
 import NoMatch from './NoMatch'
 import ColorfulBorder from './components/ColorfulBorder'
 import './styles.css'
+import { Loading } from "./components/Loading";
 
-export default function App({ serverData = null, isSSR = false }) {
-  console.log("SSR", isSSR)
+export default function App({ serverData = null }) {
   return (
-    <React.Fragment>
+    <Suspense fallback={<Loading />}>
       <ColorfulBorder />
       <div className='container'>
         <Navbar />
@@ -25,6 +25,6 @@ export default function App({ serverData = null, isSSR = false }) {
           <Route path='*' element={<NoMatch />} />
         </Routes>
       </div>
-    </React.Fragment>
+    </Suspense>
   )
 }
