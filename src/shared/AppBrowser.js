@@ -9,7 +9,7 @@ import { Loading } from "./components/Loading";
 
 export default function App({ serverData = null }) {
   return (
-    <Suspense fallback={<Loading />}>
+    <React.Suspense fallback={<Loading />}>
       <ColorfulBorder />
       <div className='container'>
         <Navbar />
@@ -25,6 +25,6 @@ export default function App({ serverData = null }) {
           <Route path='*' element={<NoMatch />} />
         </Routes>
       </div>
-    </Suspense>
+    </React.Suspense>
   )
 }
