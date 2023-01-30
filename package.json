@@ -4,9 +4,8 @@
   "scripts": {
     "build": "webpack",
     "start": "node dist/server.js",
-    "dev:client": "webpack --watch",
-    "dev:server": "nodemon --watch src dist/server.js",
-    "dev": "concurrently \"npm run dev:client\" \"npm run dev:server\""
+    "dev:compile": "cp ./public/* ./dist && webpack && node dist/server.js",
+    "dev": "nodemon --watch src --exec npm run dev:compile"
   },
   "babel": {
     "presets": [
